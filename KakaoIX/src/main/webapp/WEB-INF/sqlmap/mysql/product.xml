@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="product">
+	
+	<!-- 제품정보 불러오기 -->
+	<select id="info" parameterType="Map" resultType="Map">
+		SELECT *
+		FROM PRODUCT
+		WHERE PRODUCT_SEQ = #{PRODUCT_SEQ}
+	</select>
+	
+	<!-- 회원 아이디로 시퀀스 구해오기 -->
+	<select id="setseq" parameterType="Map" resultType="String">
+		SELECT MEMBER_SEQ
+		FROM MEMBER
+		WHERE MEMBER_ID = #{MEMBER_ID}
+	</select>
+	
+	<!-- 구매목록 추가하기 -->
+	<insert id="purchase" parameterType="Map">
+		INSERT INTO PURCHASE
+		(
+		MEMBER_SEQ, 
+		PRODUCT_SEQ
+		)
+		VALUES
+		(
+		#{MEMBER_SEQ},
+		#{PRODUCT_SEQ}
+		)
+	</insert>
+	
+	<!-- 구매내역 검색하기 -->
+	<select id="history" parameterType="Map" resultType="Map">
+		SELECT me.*, pr.*
+		FROM MEMBER me, PURCHASE pu, PRODUCT pr
+		WHERE me.MEMBER_SEQ = pu.MEMBER_SEQ
+		AND pu.PRODUCT_SEQ = pr.PRODUCT_SEQ
+		AND me.MEMBER_ID = #{MEMBER_ID}
+	</select>
+
+</mapper>
