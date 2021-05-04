@@ -15,7 +15,7 @@ public class MemberService {
 	@Autowired
 	private ShareDao dao;
 	String sqlMapId;
-	
+	// 오랜만이네...
 	// 회원 가입 
 	public void saveObject(Map<String, Object> dataMap) {
 		
