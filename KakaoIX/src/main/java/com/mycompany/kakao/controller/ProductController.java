@@ -20,6 +20,7 @@ import com.mycompany.kakao.util.CommonUtil;
 @Controller
 public class ProductController {
 	
+	// 2021-05-04 Sublime 테스트
 	// 2021-05-04 테스트
 	// 상품 관련 데이터 처리를 하기 위한 서비스단 오토와이어
 	@Autowired
